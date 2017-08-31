@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Window;
 import android.widget.TextView;
@@ -33,15 +34,26 @@ public class WeatherActivity extends BaseActivity {
 
     private TextView tvWeatherNumber;
     private TextView tvWeatherDescribe;
+    private TextView tvWeatherWD;
+    private TextView tvWeatherWS;
+
+    private TextView tvWeatherSD;
     private CityWeatherDefault cityWeatherDefault;
     private CityWeatherInfo cityWeatherInfo;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_weather);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         tvWeatherNumber = (TextView) findViewById(R.id.tv_weather_number);
         tvWeatherDescribe = (TextView) findViewById(R.id.tv_weather_describe);
+        tvWeatherWD = (TextView) findViewById(R.id.tv_weather_wd);
+        tvWeatherWS = (TextView) findViewById(R.id.tv_weather_ws);
+        tvWeatherSD = (TextView) findViewById(R.id.tv_weather_sd);
         queryFromServer("http://www.weather.com.cn/data/sk/" + 101020100 + ".html","weathercodedefault");
         queryFromServer("http://www.weather.com.cn/data/cityinfo/" + 101020100 + ".html","weathercodeinfo");
     }
@@ -122,8 +134,11 @@ public class WeatherActivity extends BaseActivity {
     private void showWeather() {
         LogUtil.i(TAG,"111");
         //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this);
-        tvWeatherNumber.setText(cityWeatherDefault.getTemp() + "℃");
+        tvWeatherNumber.setText(cityWeatherDefault.getTemp() + "°");
         tvWeatherDescribe.setText(cityWeatherInfo.getWeather());
+        tvWeatherWD.setText(cityWeatherDefault.getWD()  + "");
+        tvWeatherWS.setText(cityWeatherDefault.getWS());
+        tvWeatherSD.setText("空气湿度：" + cityWeatherDefault.getSD());
     }
 
 }

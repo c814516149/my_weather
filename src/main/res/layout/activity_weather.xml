@@ -6,18 +6,29 @@
     tools:context=".activity.WeatherActivity"
     android:background="@drawable/ajl">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_layout" />
+
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/rl_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:layout_below="@id/root_layout"
+        android:paddingTop="1dp"
         android:paddingLeft="20dp">
         <TextView
             android:id="@+id/tv_weather_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="11℃"
-            android:textSize="60sp"
+            android:textSize="80sp"
             android:textColor="@color/white"/>
         <TextView
             android:id="@+id/tv_weather_describe"
@@ -25,6 +36,7 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_alignBottom="@id/tv_weather_number"
             android:text="多云转晴"
             android:textSize="30sp"
             android:textColor="@color/white"
@@ -45,10 +57,21 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_weather_number"
             android:layout_toRightOf="@id/tv_weather_wd"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:textSize="18sp"
             android:textColor="@color/white"
             android:text="3级"/>
+        <TextView
+            android:id="@+id/tv_weather_sd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_weather_describe"
+            android:layout_alignBottom="@id/tv_weather_wd"
+            android:layout_alignTop="@id/tv_weather_wd"
+            android:text="24%"
+            android:layout_alignLeft="@id/tv_weather_describe"
+            android:textSize="18sp"
+            android:textColor="@color/white"/>
     </RelativeLayout>
 
 </RelativeLayout>
